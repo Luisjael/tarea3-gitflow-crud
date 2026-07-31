@@ -27,6 +27,15 @@ app.get('/tasks/:id', (req, res) => {
   res.json(task);
 });
 
+app.put('/tasks/:id', (req, res) => {
+  const task = tasks.find(t => t.id === parseInt(req.params.id));
+  if (!task) return res.status(404).json({ error: 'Tarea no encontrada' });
+  const { title, completed } = req.body;
+  if (title !== undefined) task.title = title;
+  if (completed !== undefined) task.completed = completed;
+  res.json(task);
+});
+
 module.exports = { app, tasks };
 
 if (require.main === module) {

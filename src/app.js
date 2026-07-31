@@ -17,6 +17,10 @@ app.post('/tasks', (req, res) => {
   res.status(201).json(task);
 });
 
+app.get('/tasks', (req, res) => {
+  res.json(tasks);
+});
+
 module.exports = { app, tasks };
 
 if (require.main === module) {
